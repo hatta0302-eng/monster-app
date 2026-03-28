@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>モンスター弱点アプリ</title>
+
+<link rel="manifest" href="manifest.json">
+
+<style>
+body {
+  font-family: system-ui;
+  background: fffffff;
+  color: black;
+  text-align: center;
+}
+#result {
+  font-size: 40px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>モンスター弱点アプリ</h1>
+
+<select id="monster">
+  <option >選んでね</option>
+  <option>リオレウス　飛ぶ赤</option>
+  <option>タマミツネ　石鹼マン</option>
+  <option>ナルガクルガ　四足忍者</option>
+  <option>ジンオウガ　せいでんきくん</option>
+  <option>アオアシラ　テディベア</option>
+  <option>アケノシルム　口長鳥</option>
+  <option>アンジャナフ　ジュラシックワールド</option>
+  <option>イソネミクニ　ラッコ</option>
+  <option>イブシマキヒコ　食われるやつ</option>
+  <option>ウルクスス　野ウサギ</option>
+  <option>オサイズチ　くるくる回るやつ</option>
+  <option>オオナズチ　消える卑怯者</option>
+  <option>ドスバギィ　口がリス</option>
+  <option>オロミドロ　風呂入れ</option>
+</select>
+<p id="result"></p>
+
+<script>
+const data = {
+  "選んでね": "🌪",
+  "リオレウス　飛ぶ赤": "🐉",
+  "タマミツネ　石鹼マン": "⚡🐉",
+  "ナルガクルガ　四足忍者": "🔥",
+  "ジンオウガ　せいでんきくん": "❄",
+  "アオアシラ　テディベア": "🔥",
+  "アケノシルム　口長鳥": "💧⚡",
+  "アンジャナフ　ジュラシックワールド": "💧❄",
+  "イソネミクニ　ラッコ": "⚡",
+  "イブシマキヒコ　食われるやつ": "🔥🐉",
+  "ウルクスス　野ウサギ": "🔥",
+  "オサイズチ　くるくる回るやつ": "⚡",
+  "オオナズチ　消える卑怯者": "🔥",
+  "ドスバギィ　口がリス": "🔥",
+  "オロミドロ　風呂入れ": "🔥❄",
+  
+};
+
+document.getElementById("monster").onchange = function() {
+  const name = this.value;
+  document.getElementById("result").textContent =
+    name ? "弱点：" + data[name] : "";
+};
+</script>
+
+</body>
+</html>
