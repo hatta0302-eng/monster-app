@@ -10,13 +10,24 @@
 <style>
 body {
   font-family: system-ui;
-  background: fffffff;
+  background: #ffffff;
   color: black;
   text-align: center;
 }
 #result {
   font-size: 40px;
   margin-top: 20px;
+}
+#search {
+  padding: 10px;
+  font-size: 16px;
+  width: 80%;
+  margin-bottom: 10px;
+}
+#monster {
+  padding: 10px;
+  font-size: 16px;
+  width: 80%;
 }
 </style>
 </head>
@@ -25,6 +36,7 @@ body {
 
 <h1>モンスター弱点アプリ</h1>
 
+<input type="text" id="search" placeholder="モンスター検索">
 <select id="monster">
   <option >選んでね</option>
   <option>リオレウス　飛ぶ赤</option>
@@ -41,13 +53,67 @@ body {
   <option>オオナズチ　消える卑怯者</option>
   <option>ドスバギィ　口がリス</option>
   <option>オロミドロ　風呂入れ</option>
+  <option>ディアブロス　映画のポスター乗ってるやつ</option>
+  <option>ディアブロス亜種　まっくろくろすけ</option>
+  <option>バサルモス　石</option>
+  <option>グラビモス　石のおや</option>
+  <option>ラングロトラ　へこき</option>
+  <option>ボルボロス　頭でかい</option>
+  <option>ジュラトドス　足なかったらかっこいいかも？</option>
+  <option>ロアルドロス　釣りだけで見つかる？</option>
+  <option>ヨツミワドウ　お相撲さん</option>
+  <option>ビシュテンゴ　あらぶりすぎ</option>
+  <option>フルフル　音出さなきゃ赤ちゃんでもいける</option>
+  <option>トビカガチ　ムササビ</option>
+  <option>ベリオロス　きばながいやつ</option>
+  <option>ティガレックス　叫ぶだけで攻撃入れてくる</option>
+  <option>バルファルク　フォーゼ</option>
+  <option>マガイマガド　鬼火めんどい</option>
+  <option>ゴシャハギ　手の色変わってる</option>
+  <option>ヤツカダキ　血が緑色</option>
+  <option>ナルハタタヒメカマキリ</option>
+  <option>クシャルダオラ　学校なくしてくれそう</option>
+  <option>テオ・テスカトル　ライオンキング</option>
+  <option>アマツマガツチ　イブシマキヒコのじょういほかん</option>
+  <option>イソネミクニ亜種　亜種じゃない方がうざい</option>
+  <option>イヴェルカーナ　</option>
+  <option>エスピナス　どくとばくはだしてくるだけ</option>
+  <option>エスピナス亜種　最初ねんな</option>
+  <option>オロミドロ亜種　亜種と普通あんま変わらん</option>
+  <option>ガイアデルム　ニート</option>
+  <option>ガランゴルム　ゴリラモンド</option>
+  <option>ゴアマガラ　鎧</option>
+  <option>シャガルマガラ　鎧のなかみ</option>
+  <option>ショウグンギザミ　背中キモイ</option>
+  <option>セルレギオス　けんやろう</option>
+  <option>タマミツネ希少種　ばくだんはん</option>
+  <option>ダイミョウザザミ　背中キモイパート2</option>
+  <option>ナルガクルガ希少種　頭白くなっただけ</option>
+  <option>ビシュテンゴ亜種　バーベキューさそう</option>
+  <option>メル.ゼナ しっぽuフォーキャッチャー</option>
+  <option>ヤツカダキ亜種　キモイ</option>
+  <option>ライゼクス　アイルーの装備仮面ライダー</option>
+  <option>リオレイア希少種　銀のうざいやつ</option>
+  <option>リオレウス希少種　金のうざいやつ</option>
+  <option>ルナガロン　遠吠えしてる</option>
+  <option>傀異克服オオナズチ　花粉症に出来ません</option>
+  <option>傀異克服クシャルダオラ　台風どころじゃない</option>
+  <option>傀異克服シャガルマガラ　鎧いらんの？</option>
+  <option>傀異克服テオテスカトル　ブラックライオン</option>
+  <option>傀異克服バルファルク　カイロス</option>
+  <option>原初を刻むメル.ゼナ 悪夢</option>
+  <option>怨嗟響めくマガイマガド　目が痛そう</option>
+  <option>混沌に呻くゴアマガラ　シャガルマガラの要素少ない</option>
+  <option>激昂ラージャン　スーパーサイヤ人３</option>
+  <option>紅蓮滾るバゼルギウス　バクダン</option>
+
 </select>
 <p id="result"></p>
 
 <script>
 const data = {
   "選んでね": "🌪",
-  "リオレウス　飛ぶ赤": "🐉",
+ 　"リオレウス　飛ぶ赤": "🐉",
   "タマミツネ　石鹼マン": "⚡🐉",
   "ナルガクルガ　四足忍者": "🔥",
   "ジンオウガ　せいでんきくん": "❄",
@@ -61,6 +127,60 @@ const data = {
   "オオナズチ　消える卑怯者": "🔥",
   "ドスバギィ　口がリス": "🔥",
   "オロミドロ　風呂入れ": "🔥❄",
+  "ディアブロス　映画のポスター乗ってるやつ": "❄🐉",
+  "ディアブロス亜種　まっくろくろすけ": "❄🐉",
+  "バサルモス　石": "💧",
+  "グラビモス　石のおや": "💧",
+  "ラングロトラ　へこき": "💧❄",
+  "ボルボロス　頭でかい": "❄",
+  "ジュラトドス　足なかったらかっこいいかも？": "⚡",
+  "ロアルドロス　釣りだけで見つかる？": "⚡",
+  "ヨツミワドウ　お相撲さん": "⚡❄",
+  "ビシュテンゴ　あらぶりすぎ": "⚡",
+  "フルフル　音出さなきゃ赤ちゃんでもいける": "🔥",
+  "トビカガチ　ムササビ": "💧❄",
+  "ベリオロス　きばながいやつ": "🔥",
+  "ティガレックス　叫ぶだけで攻撃入れてくる": "⚡",
+  "バルファルク　フォーゼ": "🐉",
+  "マガイマガド　鬼火めんどい": "💧🐉",
+  "ゴシャハギ　手の色変わってる": "🔥",
+  "ヤツカダキ　血が緑色": "💧",
+  "ナルハタタヒメカマキリ": "🐉",
+  "クシャルダオラ　学校なくしてくれそう": "⚡",
+  "テオ・テスカトル　ライオンキング": "💧",
+  "アマツマガツチ　イブシマキヒコのじょういほかん": "🔥🐉",
+  "イソネミクニ亜種　亜種じゃない方がうざい": "⚡",
+  "イヴェルカーナ　": "🔥",
+  "エスピナス　どくとばくはだしてくるだけ": "❄",
+  "エスピナス亜種　最初ねんな": "💧",
+  "オロミドロ亜種　亜種と普通あんま変わらん": "💧❄",
+  "ガイアデルム　ニート": "🐉",
+  "ガランゴルム　ゴリラモンド": "⚡❄",
+  "ゴアマガラ　鎧": "🔥🐉",
+  "シャガルマガラ　鎧のなかみ": "🔥🐉",
+  "ショウグンギザミ　背中キモイ": "🔥⚡",
+  "セルレギオス　けんやろう": "⚡",
+  "タマミツネ希少種　ばくだんはん": "⚡❄",
+  "ダイミョウザザミ　背中キモイパート2": "🔥⚡",
+  "ナルガクルガ希少種　頭白くなっただけ": "❄",
+  "ビシュテンゴ亜種　バーベキューさそう": "💧",
+  "メル.ゼナ しっぽuフォーキャッチャー": "🔥⚡",
+  "ヤツカダキ亜種　キモイ": "💧",
+  "ライゼクス　アイルーの装備仮面ライダー": "❄",
+  "リオレイア希少種　銀のうざいやつ": "⚡",
+  "リオレウス希少種　金のうざいやつ": "💧",
+  "ルナガロン　遠吠えしてる": "🔥",
+  "傀異克服オオナズチ　花粉症に出来ません": "🔥",
+  "傀異克服クシャルダオラ　台風どころじゃない": "🔥",
+  "傀異克服シャガルマガラ　鎧いらんの？": "🔥🐉",
+  "傀異克服テオテスカトル　ブラックライオン": "💧",
+  "傀異克服バルファルク　カイロス": "🔥💧⚡❄",
+  "原初を刻むメル.ゼナ 悪夢": "🔥⚡",
+  "怨嗟響めくマガイマガド　目が痛そう": "💧",
+  "混沌に呻くゴアマガラ　シャガルマガラの要素少ない": "🔥🐉",
+  "激昂ラージャン　スーパーサイヤ人３": "❄",
+  "紅蓮滾るバゼルギウス　バクダン": "❄"
+
   
 };
 
@@ -68,6 +188,34 @@ document.getElementById("monster").onchange = function() {
   const name = this.value;
   document.getElementById("result").textContent =
     name ? "弱点：" + data[name] : "";
+};
+
+const search = document.getElementById("search");
+const select = document.getElementById("monster");
+
+// ひらがな → カタカナ変換
+function hiraToKata(str) {
+  return str.replace(/[\u3041-\u3096]/g, function(match) {
+    return String.fromCharCode(match.charCodeAt(0) + 0x60);
+  });
+}
+
+search.oninput = function() {
+  // 入力文字を変換
+  const keyword = hiraToKata(search.value).toLowerCase();
+
+  for (let i = 0; i < select.options.length; i++) {
+    const option = select.options[i];
+
+    // optionの文字も変換
+    const text = hiraToKata(option.text).toLowerCase();
+
+    if (text.includes(keyword) || keyword === "") {
+      option.style.display = "";
+    } else {
+      option.style.display = "none";
+    }
+  }
 };
 </script>
 
